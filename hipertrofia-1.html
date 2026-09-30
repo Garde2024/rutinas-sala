@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hipertrofia 1 · Mujer Variante A</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#ffffff; --text:#1c1f24; --muted:#6b7280;
+    --line:#e3e6ea; --accent:#3b6ea5; --accent-soft:#e8f0f9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121417; --card:#1c1f24; --text:#eceef1; --muted:#9aa1ab;
+      --line:#2a2e35; --accent:#7fa8d6; --accent-soft:#1f2a37;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.4}
+  .wrap{max-width:520px;margin:0 auto;padding:18px 16px 40px}
+  .back{display:inline-block;color:var(--accent);text-decoration:none;font-size:14px;margin-bottom:14px}
+  .head{margin-bottom:14px}
+  .head .kicker{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.6px}
+  .head h1{font-size:24px;margin:2px 0 6px}
+  .head p{font-size:14px;color:var(--muted)}
+  .method{background:var(--accent-soft);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:13.5px}
+  .method b{color:var(--accent)}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+  summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary b{font-size:16px}
+  summary small{display:block;color:var(--muted);font-size:13px;font-weight:400}
+  summary .chev{color:var(--muted);transition:transform .2s;font-size:18px}
+  details[open] summary .chev{transform:rotate(90deg)}
+  .body{padding:0 16px 14px}
+  .block{border-top:1px solid var(--line);padding:12px 0}
+  .bt{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+  .bt b{font-size:14px}
+  .bt span{font-size:12px;color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:20px;white-space:nowrap}
+  ul{list-style:none}
+  li{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:14.5px}
+  li em{font-style:normal;color:var(--muted);white-space:nowrap;font-size:13.5px}
+  .plus{font-size:11px;color:var(--muted);padding-left:2px}
+  .notes{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:18px}
+  .notes b{font-size:14px}
+  .notes ul{margin-top:6px}
+  .notes li{display:block;font-size:13.5px;color:var(--muted);padding:3px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">‹ Volver al menú</a>
+  <div class="head">
+    <div class="kicker">Hipertrofia · N° 1</div>
+    <h1>Mujer · Variante A</h1>
+    <p>4 días: 2 de tren inferior y 2 de tren superior. Orden sugerido: lunes y jueves inferior, martes y viernes superior.</p>
+  </div>
+  <div class="method"><b>Técnica de esta variante:</b> movimiento controlado, bajando en 2 segundos y subiendo firme.</div>
+  <div id="dias"></div>
+
+  <div class="notes">
+    <b>Cómo usar la rutina</b>
+    <ul>
+      <li>• Elegí un peso con el que llegues justo al rango de repeticiones. Si pasás el máximo con buena técnica, subí el peso.</li>
+      <li>• Los ejercicios unidos con "+" se hacen seguidos, sin pausa. El descanso va al terminar la serie.</li>
+      <li>• Hacé esta variante entre 6 y 8 semanas y después pasá a la B.</li>
+      <li>• Si un ejercicio te molesta o no sabés hacerlo, consultá al profe de sala.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// ===== CONTENIDO =====
+const ENTRADA = {titulo:"Entrada en calor", info:"", ej:[["Máquina de cardio","8-10 min"],["Movilidad articular","3 min"]]};
+const CALMA   = {titulo:"Vuelta a la calma", info:"", ej:[["Elongación","5 min"],["Cardio (opcional)","10-15 min"]]};
+
+const DIAS = [
+  { dia:"Día 1", foco:"Tren inferior · cuádriceps y glúteos", bloques:[
+    ENTRADA,
+    {titulo:"Zona media", info:"3 vueltas · desc. 45 seg", ej:[["Abdominales cortos","15"],["Plancha isométrica","40 seg"],["Elevación de piernas en colchoneta","15"]]},
+    {titulo:"Ejercicio 1", info:"4 series · desc. 1:30 min", ej:[["Sentadilla en máquina smith","10-12"]]},
+    {titulo:"Ejercicio 2", info:"4 series · desc. 1:30 min", ej:[["Prensa 45°","10-12"]]},
+    {titulo:"Ejercicio 3", info:"4 series · desc. 1:30 min", ej:[["Estocada búlgara con mancuernas","10 x pierna"]]},
+    {titulo:"Ejercicio 4", info:"4 series · desc. 1:30 min", ej:[["Hip thrust con barra","10-12"]]},
+    {titulo:"Biserie 5", info:"3 series · desc. 1 min", ej:[["Sillón de cuádriceps","12-15"],["Abducción en máquina","15"]]},
+    {titulo:"Ejercicio 6", info:"3 series · desc. 1 min", ej:[["Patada de glúteo en polea","12-15 x pierna"]]},
+    CALMA
+  ]},
+  { dia:"Día 2", foco:"Tren superior · espalda y hombros", bloques:[
+    ENTRADA,
+    {titulo:"Zona media", info:"3 vueltas · desc. 45 seg", ej:[["Abdominales toco talón","20"],["Plancha lateral","30 seg x lado"]]},
+    {titulo:"Ejercicio 1", info:"4 series · desc. 1:30 min", ej:[["Dorsalera al pecho agarre abierto","10-12"]]},
+    {titulo:"Ejercicio 2", info:"4 series · desc. 1:30 min", ej:[["Remo bajo en polea","10-12"]]},
+    {titulo:"Ejercicio 3", info:"4 series · desc. 1:30 min", ej:[["Press de hombros con mancuernas sentada","10-12"]]},
+    {titulo:"Biserie 4", info:"3 series · desc. 1 min", ej:[["Vuelo lateral con mancuernas","12-15"],["Posteriores en máquina","12-15"]]},
+    {titulo:"Ejercicio 5", info:"3 series · desc. 1 min", ej:[["Curl de bíceps con mancuernas","12-15"]]},
+    CALMA
+  ]},
+  { dia:"Día 3", foco:"Tren inferior · isquiotibiales y glúteos", bloques:[
+    ENTRADA,
+    {titulo:"Zona media", info:"3 vueltas · desc. 45 seg", ej:[["Abdominales bicicleta","20"],["Espinales","15"]]},
+    {titulo:"Ejercicio 1", info:"4 series · desc. 1:30 min", ej:[["Peso muerto rumano con barra","10-12"]]},
+    {titulo:"Ejercicio 2", info:"4 series · desc. 1:30 min", ej:[["Sentadilla sumo con mancuerna","12"]]},
+    {titulo:"Ejercicio 3", info:"4 series · desc. 1:30 min", ej:[["Subida al cajón con mancuernas","10 x pierna"]]},
+    {titulo:"Biserie 4", info:"3 series · desc. 1 min", ej:[["Sillón de isquiotibiales","12-15"],["Aducción en máquina","15"]]},
+    {titulo:"Ejercicio 5", info:"3 series · desc. 1 min", ej:[["Patada de glúteo en colchoneta con tobillera","15 x pierna"]]},
+    CALMA
+  ]},
+  { dia:"Día 4", foco:"Tren superior · pecho, espalda y brazos", bloques:[
+    ENTRADA,
+    {titulo:"Zona media", info:"3 vueltas · desc. 45 seg", ej:[["Abdominales cortos con piernas arriba","15"],["Plancha alta toco hombro","20"]]},
+    {titulo:"Ejercicio 1", info:"4 series · desc. 1:30 min", ej:[["Press de pecho con mancuernas en banco plano","10-12"]]},
+    {titulo:"Ejercicio 2", info:"4 series · desc. 1:30 min", ej:[["Dorsalera al pecho agarre cerrado","10-12"]]},
+    {titulo:"Ejercicio 3", info:"4 series · desc. 1:30 min", ej:[["Serrucho con mancuerna","10 x brazo"]]},
+    {titulo:"Biserie 4", info:"3 series · desc. 1 min", ej:[["Jalón de tríceps en polea con soga","12-15"],["Curl martillo con mancuernas","12-15"]]},
+    {titulo:"Ejercicio 5", info:"3 series · desc. 1 min", ej:[["Vuelo frontal con disco","12-15"]]},
+    CALMA
+  ]}
+];
+
+// ===== ARMADO =====
+const cont = document.getElementById("dias");
+DIAS.forEach((d,i)=>{
+  let html = `<details${i===0?" open":""}><summary><div><b>${d.dia}</b><small>${d.foco}</small></div><span class="chev">›</span></summary><div class="body">`;
+  d.bloques.forEach(b=>{
+    html += `<div class="block"><div class="bt"><b>${b.titulo}</b>${b.info?`<span>${b.info}</span>`:""}</div><ul>`;
+    b.ej.forEach((e,k)=>{
+      if(k>0 && b.info) html += `<div class="plus">+</div>`;
+      html += `<li><span>${e[0]}</span><em>${e[1]}</em></li>`;
+    });
+    html += `</ul></div>`;
+  });
+  cont.insertAdjacentHTML("beforeend", html + `</div></details>`);
+});
+</script>
+</body>
+</html>
