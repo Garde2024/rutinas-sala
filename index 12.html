@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rutinas de sala</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#ffffff; --text:#1c1f24; --muted:#6b7280;
+    --line:#e3e6ea; --accent:#3b6ea5; --accent-soft:#e8f0f9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121417; --card:#1c1f24; --text:#eceef1; --muted:#9aa1ab;
+      --line:#2a2e35; --accent:#7fa8d6; --accent-soft:#1f2a37;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.4}
+  .wrap{max-width:480px;margin:0 auto;padding:28px 16px 40px}
+  header{text-align:center;margin-bottom:24px}
+  header h1{font-size:26px;font-weight:700;letter-spacing:-.3px}
+  header p{color:var(--muted);font-size:14px;margin-top:6px}
+
+  /* Pantalla 1: categorías */
+  a.cat-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:18px 16px;margin-bottom:12px;text-decoration:none;color:var(--text)}
+  a.cat-card:active{transform:scale(.99)}
+  .cat-letter{flex:0 0 48px;height:48px;border-radius:12px;background:var(--accent-soft);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px}
+  .cat-info{flex:1}
+  .cat-info b{display:block;font-size:18px}
+  .cat-info small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+  .cat-count{font-size:12px;color:var(--accent);margin-top:4px;display:block}
+
+  /* Pantalla 2: rutinas de una categoría */
+  .back{display:inline-block;color:var(--accent);text-decoration:none;font-size:14px;margin-bottom:14px}
+  .cat-head{margin-bottom:16px}
+  .cat-head h2{font-size:24px}
+  .cat-head p{font-size:14px;color:var(--muted);margin-top:4px}
+  .group{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:18px 4px 8px}
+  a.item{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:12px 14px;margin-bottom:8px;text-decoration:none;color:var(--text)}
+  a.item:active{transform:scale(.99)}
+  .num{flex:0 0 38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}
+  .info{flex:1}
+  .info b{display:block;font-size:15px}
+  .info small{color:var(--muted);font-size:12.5px}
+  .arrow{color:var(--muted);font-size:20px}
+
+  .cta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center;margin-top:30px}
+  .cta h3{font-size:16px;margin-bottom:6px}
+  .cta p{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+  .cta a{display:block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;
+    padding:13px;border-radius:12px;font-size:15px}
+  @media (prefers-color-scheme: dark){ .cta a{color:#121417} }
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main id="app"></main>
+
+  <div class="cta">
+    <h3>¿Querés un plan hecho a tu medida?</h3>
+    <p>Entrenamiento personalizado según tu objetivo, con seguimiento y progresión.</p>
+    <a id="ctaLink" href="#" target="_blank" rel="noopener">Consultar entrenamiento personalizado</a>
+  </div>
+
+  <footer>Ante cualquier duda con un ejercicio, consultá al profe de sala.</footer>
+</div>
+
+<script>
+// ===== CONFIGURACIÓN =====
+// Link del botón de abajo. Por ahora abre WhatsApp; si preferís tu landing, pegá la URL acá.
+const CTA_URL = "https://wa.me/5491154758578?text=" + encodeURIComponent("Hola Maxi! Vi las rutinas de sala y quiero consultar por entrenamiento personalizado.");
+
+// Cada categoría: id (va en el link), nombre, descripción corta, y sus rutinas agrupadas.
+// Cada rutina: número, título, detalle, archivo.
+const CATEGORIAS = [
+  { id:"adaptacion", nombre:"Adaptación", letra:"A",
+    desc:"Para arrancar o volver a entrenar. Full body, técnica y base.",
+    grupos:[
+      { titulo:"Mujer", rutinas:[
+        {n:1, t:"3 días", d:"Full body · énfasis tren inferior", f:"adaptacion-1.html"},
+        {n:2, t:"4 días", d:"Full body · énfasis tren inferior", f:"adaptacion-2.html"},
+        {n:3, t:"5 días", d:"Full body · énfasis tren inferior", f:"adaptacion-3.html"}
+      ]},
+      { titulo:"Hombre", rutinas:[
+        {n:4, t:"3 días", d:"Full body · énfasis tren superior", f:"adaptacion-4.html"},
+        {n:5, t:"4 días", d:"Full body · énfasis tren superior", f:"adaptacion-5.html"},
+        {n:6, t:"5 días", d:"Full body · énfasis tren superior", f:"adaptacion-6.html"}
+      ]}
+    ]},
+  { id:"hipertrofia", nombre:"Hipertrofia", letra:"H",
+    desc:"Para ganar músculo. 4 días. Rotá entre A, B y C cada 6 a 8 semanas.",
+    grupos:[
+      { titulo:"Mujer", rutinas:[
+        {n:1, t:"Variante A", d:"2 tren inferior + 2 tren superior", f:"hipertrofia-1.html"},
+        {n:2, t:"Variante B", d:"2 tren inferior + 2 tren superior", f:"hipertrofia-2.html"},
+        {n:3, t:"Variante C", d:"2 tren inferior + 2 tren superior", f:"hipertrofia-3.html"}
+      ]},
+      { titulo:"Hombre", rutinas:[
+        {n:4, t:"Variante A", d:"Torso / pierna", f:"hipertrofia-4.html"},
+        {n:5, t:"Variante B", d:"Torso / pierna", f:"hipertrofia-5.html"},
+        {n:6, t:"Variante C", d:"Torso / pierna", f:"hipertrofia-6.html"}
+      ]}
+    ]},
+  { id:"definicion", nombre:"Definición", letra:"D",
+    desc:"Circuitos dinámicos con más gasto energético. 3 días.",
+    grupos:[
+      { titulo:"Mujer", rutinas:[
+        {n:1, t:"3 días", d:"Circuitos + intervalos", f:"definicion-1.html"}
+      ]},
+      { titulo:"Hombre", rutinas:[
+        {n:2, t:"3 días", d:"Circuitos + intervalos", f:"definicion-2.html"}
+      ]}
+    ]}
+];
+
+// ===== PANTALLAS =====
+const app = document.getElementById("app");
+
+function contar(c){ return c.grupos.reduce((s,g)=>s+g.rutinas.length,0); }
+
+function verCategorias(){
+  let html = `<header><h1>Rutinas de sala</h1><p>Elegí la categoría que te indicó el profe.</p></header>`;
+  CATEGORIAS.forEach(c=>{
+    html += `<a class="cat-card" href="#${c.id}">
+      <div class="cat-letter">${c.letra}</div>
+      <div class="cat-info"><b>${c.nombre}</b><small>${c.desc}</small><span class="cat-count">${contar(c)} rutinas</span></div>
+      <span class="arrow">›</span></a>`;
+  });
+  app.innerHTML = html;
+  document.title = "Rutinas de sala";
+}
+
+function verRutinas(c){
+  let html = `<a class="back" href="#">‹ Categorías</a>
+    <div class="cat-head"><h2>${c.nombre}</h2><p>${c.desc} Buscá el número que te indicó el profe.</p></div>`;
+  c.grupos.forEach(g=>{
+    html += `<div class="group">${g.titulo}</div>`;
+    g.rutinas.forEach(r=>{
+      html += `<a class="item" href="${r.f}"><div class="num">${r.n}</div>
+        <div class="info"><b>${c.nombre} ${r.n} · ${g.titulo} ${r.t}</b><small>${r.d}</small></div>
+        <span class="arrow">›</span></a>`;
+    });
+  });
+  app.innerHTML = html;
+  document.title = c.nombre + " · Rutinas de sala";
+}
+
+function mostrar(){
+  const id = location.hash.replace("#","");
+  const c = CATEGORIAS.find(x=>x.id===id);
+  c ? verRutinas(c) : verCategorias();
+  window.scrollTo(0,0);
+}
+
+// Si vuelve desde una rutina con "Volver al menú", lo dejamos en su categoría.
+if(!location.hash){
+  const m = (document.referrer||"").match(/(adaptacion|hipertrofia|definicion)-\d+\.html/);
+  if(m) history.replaceState(null,"","#"+m[1]);
+}
+
+window.addEventListener("hashchange", mostrar);
+mostrar();
+document.getElementById("ctaLink").href = CTA_URL;
+</script>
+</body>
+</html>
